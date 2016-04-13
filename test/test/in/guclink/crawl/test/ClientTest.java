@@ -1,4 +1,4 @@
-package in.guclink.crawl.test;
+package test.in.guclink.crawl.test;
 
 import static org.junit.Assert.*;
 
