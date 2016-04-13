@@ -1,4 +1,4 @@
-package in.guclink.crawl.student;
+package in.guclink.crawl.test;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import in.guclink.crawl.Credentials;
+import in.guclink.crawl.student.Client;
 
 public class ClientTest {
 	private static String username, password;
