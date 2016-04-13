@@ -31,15 +31,12 @@ public class Client {
 			HtmlPage currentPage = webClient.getPage("http://student.guc.edu.eg/Web/Student/Schedule/GroupSchedule.aspx");
 			return currentPage;
 		} catch (FailingHttpStatusCodeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
