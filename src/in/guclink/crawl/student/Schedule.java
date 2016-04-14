@@ -43,6 +43,10 @@ public class Schedule {
 		}
 	}
 	
+	public ArrayList<ArrayList<Slot>> getSlots() {
+		return slots;
+	}
+	
 	
 	private void parseSlots(HtmlPage schedule) {
 		DomElement table = schedule.getElementById("scdTbl");
