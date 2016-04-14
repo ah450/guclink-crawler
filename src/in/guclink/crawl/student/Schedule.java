@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import com.gargoylesoftware.htmlunit.html.DomElement;
+import com.gargoylesoftware.htmlunit.html.HtmlFont;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSpan;
 import com.gargoylesoftware.htmlunit.html.HtmlTableDataCell;
@@ -71,6 +72,7 @@ public class Schedule {
 	private Slot makeLectureSlot(HtmlTableDataCell cell) {
 		Slot slot = new Slot();
 		slot.isTutorial = false;
+		slot.isLab = false;
 		@SuppressWarnings("unchecked")
 		List<HtmlSpan> spans = (List<HtmlSpan>) cell.getByXPath(".//span");
 		if(spans.isEmpty()) {
@@ -105,8 +107,29 @@ public class Schedule {
 	}
 
 	private Slot makeTutorialSlot(HtmlTableDataCell cell) {
-		// TODO Auto-generated method stub
-		return null;
+		Slot slot = new Slot();
+		slot.isFree = false;
+		slot.isLecture = false;
+		slot.isTutorial = true;
+		slot.isLab = false;
+		@SuppressWarnings("unchecked")
+		List<HtmlFont> fonts = (List<HtmlFont>) cell.getByXPath(".//font");
+		if (fonts.size() >= 1) {
+			slot.group = fonts.get(0).getTextContent().trim();
+		}
+		if (fonts.size() >= 2) {
+			slot.location = fonts.get(1).getTextContent().trim();
+		}
+		if (fonts.size() >= 3) {
+			slot.name = fonts.get(2).getTextContent().trim();
+			if(slot.name.contains("Lab")) {
+				slot.isLab = true;
+			}
+			slot.name = slot.name.replace("Lab","");
+			slot.name = slot.name.replace("Tut","");
+			slot.name = slot.name.trim();
+		}
+		return slot;
 	}
 	
 }
